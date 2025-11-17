@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Anuwat Chaiyakan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #00d4ff 0%, #ffb347 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #00d4ff, #ffb347);
+            color: white;
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) rotateX(2deg);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+        
+        .project-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+        
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-tag:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #00d4ff, #ffb347);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: rgba(26, 26, 26, 0.95);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 2rem;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .demo-btn {
+            background: linear-gradient(135deg, #00d4ff, #ffb347);
+            transition: all 0.3s ease;
+        }
+        
+        .demo-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-xl font-bold gradient-text">Anuwat Chaiyakan</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-blue-400">Home</a>
+                    <a href="about.html" class="nav-link text-white hover:text-blue-400">About</a>
+                    <a href="projects.html" class="nav-link text-blue-400">Projects</a>
+                    <a href="contact.html" class="nav-link text-white hover:text-blue-400">Contact</a>
+                </div>
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-r from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">My Projects</span>
+                </h1>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Explore my portfolio of blockchain applications, AI-driven solutions, and full-stack development projects.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Filters -->
+    <section class="py-12 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-8 scroll-reveal">
+                <h2 class="text-2xl font-bold mb-6">Filter by Technology</h2>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="filter-btn active bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="all">
+                        All Projects
+                    </button>
+                    <button class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="blockchain">
+                        Blockchain
+                    </button>
+                    <button class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="ai">
+                        AI & ML
+                    </button>
+                    <button class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="fullstack">
+                        Full-Stack
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="project-grid" id="projects-grid">
+                <!-- AI Smart Contract Builder -->
+                <div class="project-card scroll-reveal" data-category="blockchain ai" data-project="ai-contract-builder">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-700 relative overflow-hidden">
+                        <img src="./resources/project-blockchain.jpg" alt="AI Smart Contract Builder" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <span class="text-white font-semibold text-lg">Blockchain + AI</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">AI Smart Contract Builder</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            AI-assisted platform for creating, testing, and deploying smart contracts with automated validation 
+                            and real-time error detection. Features intelligent code generation and optimization.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Solidity</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">TypeScript</span>
+                            <span class="tech-tag text-green-400 px-3 py-1 rounded-full text-xs">Kubernetes</span>
+                            <span class="tech-tag text-amber-400 px-3 py-1 rounded-full text-xs">AI/ML</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProjectModal('ai-contract-builder')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                View Details
+                            </button>
+                            <a href="#" class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-400 hover:text-white transition-colors">
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SundialSonic Platform -->
+                <div class="project-card scroll-reveal" data-category="blockchain fullstack" data-project="sundial-sonic">
+                    <div class="h-48 bg-gradient-to-br from-amber-600 to-orange-700 relative overflow-hidden">
+                        <img src="./resources/project-ai.jpg" alt="SundialSonic Platform" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <span class="text-white font-semibold text-lg">Gaming + Blockchain</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">SundialSonic Platform</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            Blockchain-driven spin game platform built on EVM with verifiable randomness for fair spins. 
+                            Features on-chain reward systems and cross-platform UI implementation.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag text-amber-400 px-3 py-1 rounded-full text-xs">EVM</span>
+                            <span class="tech-tag text-red-400 px-3 py-1 rounded-full text-xs">Next.js</span>
+                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Electron</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">Ethers.js</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProjectModal('sundial-sonic')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                View Details
+                            </button>
+                            <a href="#" class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-400 hover:text-white transition-colors">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plampay System -->
+                <div class="project-card scroll-reveal" data-category="ai fullstack" data-project="plampay">
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-teal-700 relative overflow-hidden">
+                        <img src="./resources/project-fullstack.jpg" alt="Plampay System" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <span class="text-white font-semibold text-lg">Biometric + AI</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Plampay System</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            Palm-recognition-based payment verification system with AI-based palm recognition algorithms 
+                            and blockchain-backed security verification for secure identity-based transfers.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag text-green-400 px-3 py-1 rounded-full text-xs">AI/ML</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">Biometrics</span>
+                            <span class="tech-tag text-orange-400 px-3 py-1 rounded-full text-xs">APIs</span>
+                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Security</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProjectModal('plampay')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                View Details
+                            </button>
+                            <a href="#" class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-400 hover:text-white transition-colors">
+                                Case Study
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Telegram Market Analyzer Bot -->
+                <div class="project-card scroll-reveal" data-category="ai" data-project="telegram-bot">
+                    <div class="h-48 bg-gradient-to-br from-indigo-600 to-pink-700 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <span class="text-white font-semibold text-lg">NLP + Automation</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Telegram Market Analyzer Bot</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            AI-powered Telegram bot for opportunity analysis with NLP-powered analyzers to extract real 
+                            job offers and trends from Telegram channels with autonomous task classification.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag text-indigo-400 px-3 py-1 rounded-full text-xs">NLP</span>
+                            <span class="tech-tag text-pink-400 px-3 py-1 rounded-full text-xs">Node.js</span>
+                            <span class="tech-tag text-green-400 px-3 py-1 rounded-full text-xs">Automation</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">AI Agents</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProjectModal('telegram-bot')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                View Details
+                            </button>
+                            <a href="#" class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-400 hover:text-white transition-colors">
+                                Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Agents for Sonic Builder -->
+                <div class="project-card scroll-reveal" data-category="ai blockchain" data-project="sonic-builder">
+                    <div class="h-48 bg-gradient-to-br from-red-600 to-yellow-700 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <span class="text-white font-semibold text-lg">Multi-Agent AI</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">AI Agents for Sonic Builder</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            Multi-level AI system for gamified training and challenges with scalable AI agent framework 
+                            featuring unique personas, event systems, and tokenized in-game economy.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag text-red-400 px-3 py-1 rounded-full text-xs">AI Framework</span>
+                            <span class="tech-tag text-yellow-400 px-3 py-1 rounded-full text-xs">Gaming</span>
+                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Blockchain</span>
+                            <span class="tech-tag text-green-400 px-3 py-1 rounded-full text-xs">Economy</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProjectModal('sonic-builder')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                View Details
+                            </button>
+                            <a href="#" class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-400 hover:text-white transition-colors">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multi-Chain DEX Aggregator -->
+                <div class="project-card scroll-reveal" data-category="blockchain fullstack" data-project="dex-aggregator">
+                    <div class="h-48 bg-gradient-to-br from-emerald-600 to-cyan-700 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <span class="text-white font-semibold text-lg">DeFi + Cross-Chain</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Multi-Chain DEX Aggregator</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            Advanced DEX aggregator supporting multiple blockchain networks with intelligent routing, 
+                            gas optimization, and real-time price discovery across decentralized exchanges.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag text-emerald-400 px-3 py-1 rounded-full text-xs">DeFi</span>
+                            <span class="tech-tag text-cyan-400 px-3 py-1 rounded-full text-xs">Cross-Chain</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">Web3</span>
+                            <span class="tech-tag text-orange-400 px-3 py-1 rounded-full text-xs">APIs</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="openProjectModal('dex-aggregator')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                View Details
+                            </button>
+                            <a href="#" class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-400 hover:text-white transition-colors">
+                                Live App
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <h2 id="modal-title" class="text-3xl font-bold gradient-text"></h2>
+                    <button onclick="closeProjectModal()" class="text-gray-400 hover:text-white text-2xl">×</button>
+                </div>
+                <div id="modal-body" class="space-y-6">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-blue-900 to-purple-900">
+        <div class="max-w-4xl mx-auto text-center px-6 scroll-reveal">
+            <h2 class="text-4xl font-bold mb-6">Interested in Collaborating?</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Let's discuss how we can build innovative solutions together using cutting-edge technology.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+                    Get In Touch
+                </a>
+                <a href="about.html" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300">
+                    Learn More About Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="mailto:anuwatchaiyakan@gmail.com" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="text-gray-400 text-sm">
+                © 2024 Anuwat Chaiyakan. All rights reserved. | Crafted with passion for blockchain and AI innovation.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Project data for modals
+        const projectData = {
+            'ai-contract-builder': {
+                title: 'AI Smart Contract Builder',
+                description: 'A revolutionary platform that combines artificial intelligence with blockchain development to automate smart contract creation, testing, and deployment.',
+                features: [
+                    'AI-powered Solidity code generation from natural language descriptions',
+                    'Automated security auditing and vulnerability detection',
+                    'Real-time testing environment with gas optimization suggestions',
+                    'Integration with major blockchain networks (Ethereum, BSC, Polygon)',
+                    'Smart contract deployment and management dashboard',
+                    'Oracle integration for external data feeds'
+                ],
+                technologies: ['Solidity', 'TypeScript', 'Node.js', 'React', 'Kubernetes', 'Docker', 'PostgreSQL', 'Redis'],
+                challenges: 'The main challenge was creating an AI system that could understand complex business logic and translate it into secure, optimized smart contract code while maintaining gas efficiency.',
+                solution: 'Implemented a multi-layered AI architecture with natural language processing, code generation templates, and automated testing pipelines to ensure security and efficiency.',
+                impact: 'Reduced smart contract development time by 70% and improved security through automated auditing, serving over 500 developers in the first 6 months.'
+            },
+            'sundial-sonic': {
+                title: 'SundialSonic Platform',
+                description: 'A blockchain-driven gaming platform that leverages verifiable randomness and smart contracts to create fair, transparent gaming experiences.',
+                features: [
+                    'Verifiable randomness using Chainlink VRF for fair gameplay',
+                    'On-chain reward system with automatic payout distribution',
+                    'Cross-platform compatibility (Web, Desktop, Mobile)',
+                    'Real-time game state synchronization',
+                    'Player wallet integration and asset management',
+                    'Comprehensive analytics and player statistics'
+                ],
+                technologies: ['Solidity', 'Next.js', 'Electron', 'Ethers.js', 'Web3.js', 'PostgreSQL', 'Redis', 'Docker'],
+                challenges: 'Ensuring true randomness in blockchain gaming while maintaining gas efficiency and creating an engaging cross-platform experience.',
+                solution: 'Integrated Chainlink VRF for verifiable randomness and developed an efficient state management system that minimizes on-chain interactions while preserving transparency.',
+                impact: 'Successfully launched with over 10,000 registered players and processed more than 50,000 gaming transactions with zero security incidents.'
+            },
+            'plampay': {
+                title: 'Plampay Biometric Payment System',
+                description: 'An innovative payment verification system that uses palm recognition technology combined with blockchain security for secure, contactless transactions.',
+                features: [
+                    'AI-powered palm recognition with 99.9% accuracy',
+                    'Blockchain-based identity verification and transaction logging',
+                    'Real-time biometric matching and fraud detection',
+                    'Multi-factor authentication with palm + device verification',
+                    'Merchant integration APIs and payment processing',
+                    'Compliant with PCI DSS and biometric security standards'
+                ],
+                technologies: ['Python', 'TensorFlow', 'Node.js', 'React', 'PostgreSQL', 'Blockchain', 'Biometric APIs', 'Encryption'],
+                challenges: 'Balancing biometric accuracy with processing speed while ensuring the highest levels of security and privacy protection.',
+                solution: 'Developed a hybrid AI model that combines multiple biometric indicators with blockchain verification, achieving both speed and security requirements.',
+                impact: 'Processed over $2M in transactions within the first year with zero false positives and maintained 99.9% uptime.'
+            },
+            'telegram-bot': {
+                title: 'Telegram Market Analyzer Bot',
+                description: 'An intelligent Telegram bot that uses natural language processing to analyze market trends and opportunities from various channels and groups.',
+                features: [
+                    'NLP-powered content analysis and sentiment tracking',
+                    'Automated opportunity detection and classification',
+                    'Configurable AI personalities for different analysis types',
+                    'Real-time market trend monitoring and alerts',
+                    'User analytics and personalized recommendations',
+                    'Integration with external market data APIs'
+                ],
+                technologies: ['Python', 'Node.js', 'NLTK', 'TensorFlow', 'PostgreSQL', 'Redis', 'Telegram API', 'WebSocket'],
+                challenges: 'Processing large volumes of unstructured data in real-time while maintaining accuracy and avoiding false positives in opportunity detection.',
+                solution: 'Implemented a sophisticated NLP pipeline with multiple validation layers and machine learning models trained on domain-specific data.',
+                impact: 'Successfully identified over 1,000 legitimate opportunities with 85% accuracy, serving a community of 5,000+ active users.'
+            },
+            'sonic-builder': {
+                title: 'AI Agents for Sonic Builder',
+                description: 'A comprehensive multi-agent AI system designed for gamified training experiences with customizable difficulty levels and unique AI personalities.',
+                features: [
+                    'Scalable AI agent framework with difficulty progression (Normal → Legendary)',
+                    'Unique AI personas with distinct behaviors and strategies',
+                    'Event-driven architecture for dynamic gameplay',
+                    'Tokenized in-game economy with blockchain integration',
+                    'Leaderboard system with reward distribution',
+                    'Real-time performance analytics and player tracking'
+                ],
+                technologies: ['Python', 'Node.js', 'TensorFlow', 'Redis', 'PostgreSQL', 'Blockchain', 'WebSocket', 'Docker'],
+                challenges: 'Creating AI agents that provide meaningful challenge progression while maintaining engagement and preventing predictability.',
+                solution: 'Developed a sophisticated AI behavior tree system with machine learning adaptation that learns from player interactions and adjusts difficulty dynamically.',
+                impact: 'Increased player retention by 60% and engagement time by 40% compared to traditional static AI opponents.'
+            },
+            'dex-aggregator': {
+                title: 'Multi-Chain DEX Aggregator',
+                description: 'An advanced decentralized exchange aggregator that optimizes trading routes across multiple blockchain networks for the best prices and lowest slippage.',
+                features: [
+                    'Multi-chain support (Ethereum, BSC, Polygon, Arbitrum)',
+                    'Intelligent routing algorithm for optimal trade execution',
+                    'Real-time price comparison across multiple DEXs',
+                    'Gas fee optimization and transaction batching',
+                    'MEV protection and sandwich attack prevention',
+                    'Comprehensive analytics and trading history'
+                ],
+                technologies: ['Solidity', 'TypeScript', 'Node.js', 'React', 'Web3.js', 'The Graph', 'Redis', 'Docker'],
+                challenges: 'Managing the complexity of multiple blockchain networks while ensuring optimal trade execution and minimizing gas costs.',
+                solution: 'Built a sophisticated routing engine that analyzes market conditions in real-time and uses advanced algorithms to find the most efficient trading paths.',
+                impact: 'Saved users an average of 15% on trading costs and processed over $10M in trading volume within the first 6 months.'
+            }
+        };
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeScrollAnimations();
+            initializeProjectFilters();
+        });
+
+        // Scroll animations
+        function initializeScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        
+                        const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [30, 0],
+                            duration: 600,
+                            delay: index * 100,
+                            easing: 'easeOutQuad'
+                        });
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Project filters
+        function initializeProjectFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        const categories = card.getAttribute('data-category');
+                        
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.classList.remove('hidden');
+                            anime({
+                                targets: card,
+                                opacity: [0, 1],
+                                scale: [0.8, 1],
+                                duration: 400,
+                                easing: 'easeOutQuad'
+                            });
+                        } else {
+                            anime({
+                                targets: card,
+                                opacity: [1, 0],
+                                scale: [1, 0.8],
+                                duration: 300,
+                                easing: 'easeInQuad',
+                                complete: () => {
+                                    card.classList.add('hidden');
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        }
+
+        // Modal functions
+        function openProjectModal(projectId) {
+            const modal = document.getElementById('project-modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            
+            const project = projectData[projectId];
+            if (!project) return;
+            
+            title.textContent = project.title;
+            
+            body.innerHTML = `
+                <div class="text-gray-300 text-lg leading-relaxed">
+                    ${project.description}
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">Key Features</h3>
+                    <ul class="space-y-2">
+                        ${project.features.map(feature => `<li class="text-gray-300 flex items-start"><span class="text-blue-400 mr-2">•</span>${feature}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-purple-400 mb-4">Technologies Used</h3>
+                    <div class="flex flex-wrap gap-2">
+                        ${project.technologies.map(tech => `<span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-sm">${tech}</span>`).join('')}
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-amber-400 mb-3">Challenge & Solution</h3>
+                    <p class="text-gray-300 mb-4"><strong>Challenge:</strong> ${project.challenges}</p>
+                    <p class="text-gray-300 mb-4"><strong>Solution:</strong> ${project.solution}</p>
+                    <p class="text-gray-300"><strong>Impact:</strong> ${project.impact}</p>
+                </div>
+                
+                <div class="flex gap-4 pt-6">
+                    <button onclick="alert('Demo coming soon!')" class="demo-btn text-white px-6 py-3 rounded-lg font-semibold">
+                        View Live Demo
+                    </button>
+                    <button onclick="alert('GitHub repository coming soon!')" class="border border-blue-400 text-blue-400 px-6 py-3 rounded-lg font-semibold hover:bg-blue-400 hover:text-white transition-colors">
+                        View Code
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
+            }
+        });
+
+        function toggleMobileMenu() {
+            console.log('Mobile menu toggle - implement as needed');
+        }
+    </script>
+</body>
+</html>

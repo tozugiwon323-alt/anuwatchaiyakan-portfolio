@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Anuwat Chaiyakan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #00d4ff 0%, #ffb347 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-item.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #00d4ff, #ffb347);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: linear-gradient(to bottom, #00d4ff, transparent);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(135deg, #00d4ff, #ffb347);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 2s ease;
+            position: relative;
+        }
+        
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #00d4ff, #ffb347);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-xl font-bold gradient-text">Anuwat Chaiyakan</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-blue-400">Home</a>
+                    <a href="about.html" class="nav-link text-blue-400">About</a>
+                    <a href="projects.html" class="nav-link text-white hover:text-blue-400">Projects</a>
+                    <a href="contact.html" class="nav-link text-white hover:text-blue-400">Contact</a>
+                </div>
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-r from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">About Me</span>
+                </h1>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Passionate about building the future through blockchain technology, AI automation, and innovative software solutions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Summary -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <h2 class="text-3xl font-bold gradient-text mb-6">Professional Journey</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        I'm a creative and technically adept Software Engineer specializing in Backend & Blockchain development, 
+                        with a deep passion for building decentralized, AI-driven, and automation-based platforms. My expertise 
+                        spans across smart contract architecture, backend automation pipelines, and scalable infrastructure design.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        With a strong foundation in TypeScript, Node.js, Next.js, Astro, and Electron, I design intelligent 
+                        user experiences connected to automated backend systems. I'm dedicated to advancing blockchain adoption 
+                        and AI orchestration through real-world automation, efficient systems, and developer-friendly design.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm">Blockchain Expert</span>
+                        <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm">AI Specialist</span>
+                        <span class="bg-green-600 text-white px-4 py-2 rounded-full text-sm">Full-Stack Developer</span>
+                        <span class="bg-amber-600 text-white px-4 py-2 rounded-full text-sm">System Architect</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Professional Experience</h2>
+                <p class="text-xl text-gray-400">My journey through blockchain, AI, and software development</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="timeline-item" data-delay="0">
+                    <div class="bg-gray-900 rounded-lg p-6 border border-gray-800">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-blue-400">Lead Developer & System Architect</h3>
+                            <span class="text-gray-400 text-sm">Studio Shodwe • 2023 - Present</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Architected large-scale AI-based backend systems for decentralized applications. Built multi-agent 
+                            AI frameworks (Sonic Builder) that simulate user training through interactive AI opponents.
+                        </p>
+                        <ul class="text-gray-400 space-y-2">
+                            <li>• Designed REST APIs for AI Smart Contract Builder with generation, debugging, and deployment</li>
+                            <li>• Managed Dockerized environments and Kubernetes clusters for high reliability</li>
+                            <li>• Supervised cross-platform desktop tools using Electron and frontend applications</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-delay="200">
+                    <div class="bg-gray-900 rounded-lg p-6 border border-gray-800">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-purple-400">Blockchain Developer</h3>
+                            <span class="text-gray-400 text-sm">Fauget Studio • 2021 - 2023</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Led blockchain integration efforts using Solidity, Hardhat, and Ethers.js. Designed backend APIs 
+                            for smart contract automation and oracle data ingestion systems.
+                        </p>
+                        <ul class="text-gray-400 space-y-2">
+                            <li>• Implemented Kubernetes-based CI/CD for automated testing and deployment</li>
+                            <li>• Developed oracle data ingestion systems for off-chain to on-chain data flow</li>
+                            <li>• Created secure smart contract interactions with TypeScript backend APIs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-delay="400">
+                    <div class="bg-gray-900 rounded-lg p-6 border border-gray-800">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                            <h3 class="text-2xl font-bold text-green-400">Backend & Blockchain Engineer</h3>
+                            <span class="text-gray-400 text-sm">Borcelle Studio • 2020 - 2021</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Developed backend automation for blockchain deployment and testing systems. Built EVM-compatible 
+                            smart contracts with emphasis on gas efficiency and security audits.
+                        </p>
+                        <ul class="text-gray-400 space-y-2">
+                            <li>• Integrated Remix and Hardhat modules into custom backend APIs</li>
+                            <li>• Collaborated on user-friendly dashboards for real-time smart contract testing</li>
+                            <li>• Achieved significant gas optimization in smart contract deployments</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Technical Skills</h2>
+                <p class="text-xl text-gray-400">Proficiency levels across technologies and frameworks</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="scroll-reveal">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-8">Blockchain & Smart Contracts</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">Solidity</span>
+                                <span class="text-gray-400">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">EVM & Bytecode</span>
+                                <span class="text-gray-400">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">Hardhat & Testing</span>
+                                <span class="text-gray-400">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">DeFi Protocols</span>
+                                <span class="text-gray-400">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-8">AI & Full-Stack Development</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">TypeScript/JavaScript</span>
+                                <span class="text-gray-400">94%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="94"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">Node.js & Backend</span>
+                                <span class="text-gray-400">91%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="91"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">React & Next.js</span>
+                                <span class="text-gray-400">87%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="87"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">AI/ML & Automation</span>
+                                <span class="text-gray-400">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="scroll-reveal">
+                    <h3 class="text-2xl font-bold text-green-400 mb-8">DevOps & Infrastructure</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">Docker & Containers</span>
+                                <span class="text-gray-400">89%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="89"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">Kubernetes</span>
+                                <span class="text-gray-400">83%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="83"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">CI/CD Pipelines</span>
+                                <span class="text-gray-400">86%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="86"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal">
+                    <h3 class="text-2xl font-bold text-amber-400 mb-8">Databases & Tools</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">PostgreSQL & MongoDB</span>
+                                <span class="text-gray-400">84%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="84"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">Redis & Caching</span>
+                                <span class="text-gray-400">81%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="81"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white font-semibold">Git & Version Control</span>
+                                <span class="text-gray-400">93%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="93"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Achievements -->
+    <section class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Education & Achievements</h2>
+                <p class="text-xl text-gray-400">Academic foundation and professional recognition</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="scroll-reveal">
+                    <div class="achievement-card">
+                        <h3 class="text-2xl font-bold text-blue-400 mb-4">Education</h3>
+                        <div class="mb-6">
+                            <h4 class="text-xl font-semibold text-white mb-2">Bachelor of Engineering in Computer Engineering</h4>
+                            <p class="text-gray-400 mb-2">Chulalongkorn University</p>
+                            <p class="text-gray-300 text-sm">
+                                Specialized in software engineering, blockchain development, and artificial intelligence. 
+                                Completed senior research project on "AI-Assisted Smart Contract Automation."
+                            </p>
+                        </div>
+                        <ul class="text-gray-400 space-y-2">
+                            <li>• Outstanding Project Recognition for innovation in backend and smart contract automation</li>
+                            <li>• Active participation in Ethereum and Web3 developer communities</li>
+                            <li>• Special semester focused on advanced AI and decentralized systems</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal">
+                    <div class="achievement-card">
+                        <h3 class="text-2xl font-bold text-purple-400 mb-4">Key Achievements</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-blue-400 pl-4">
+                                <h4 class="font-semibold text-white">Blockchain Innovation Award</h4>
+                                <p class="text-gray-400 text-sm">Recognized for developing advanced smart contract automation systems</p>
+                            </div>
+                            <div class="border-l-4 border-green-400 pl-4">
+                                <h4 class="font-semibold text-white">AI Development Excellence</h4>
+                                <p class="text-gray-400 text-sm">Led multi-agent AI framework development for gamified training platforms</p>
+                            </div>
+                            <div class="border-l-4 border-amber-400 pl-4">
+                                <h4 class="font-semibold text-white">Open Source Contributor</h4>
+                                <p class="text-gray-400 text-sm">Active in building and documenting blockchain testing and deployment tools</p>
+                            </div>
+                            <div class="border-l-4 border-purple-400 pl-4">
+                                <h4 class="font-semibold text-white">Technical Leadership</h4>
+                                <p class="text-gray-400 text-sm">Architected large-scale backend systems serving thousands of users</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-blue-900 to-purple-900">
+        <div class="max-w-4xl mx-auto text-center px-6 scroll-reveal">
+            <h2 class="text-4xl font-bold mb-6">Let's Build Together</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Ready to collaborate on innovative blockchain solutions, AI-driven applications, and cutting-edge technology projects.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+                    Start a Conversation
+                </a>
+                <a href="projects.html" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300">
+                    View My Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="mailto:anuwatchaiyakan@gmail.com" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="text-gray-400 text-sm">
+                © 2024 Anuwat Chaiyakan. All rights reserved. | Crafted with passion for blockchain and AI innovation.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeScrollAnimations();
+            initializeSkillBars();
+            initializeTimelineAnimations();
+        });
+
+        function initializeScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.scroll-reveal, .timeline-item').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        function initializeSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.getAttribute('data-width');
+                        setTimeout(() => {
+                            entry.target.style.width = width + '%';
+                        }, 200);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillBars.forEach(bar => {
+                skillObserver.observe(bar);
+            });
+        }
+
+        function initializeTimelineAnimations() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            timelineItems.forEach((item, index) => {
+                const delay = item.getAttribute('data-delay') || 0;
+                setTimeout(() => {
+                    item.classList.add('revealed');
+                }, parseInt(delay));
+            });
+        }
+
+        function toggleMobileMenu() {
+            console.log('Mobile menu toggle - implement as needed');
+        }
+    </script>
+</body>
+</html>
