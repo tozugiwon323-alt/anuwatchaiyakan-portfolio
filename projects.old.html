@@ -198,7 +198,7 @@
                     <span class="gradient-text">My Projects</span>
                 </h1>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    Explore my portfolio of blockchain applications, AI-driven solutions, and full-stack development projects.
+                    Explore my portfolio of game backends, AI-driven systems, and scalable cloud architecture projects.
                 </p>
             </div>
         </div>
@@ -213,14 +213,14 @@
                     <button class="filter-btn active bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="all">
                         All Projects
                     </button>
-                    <button class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="blockchain">
-                        Blockchain
+                    <button class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="backend">
+                        Game Backend
                     </button>
                     <button class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="ai">
                         AI & ML
                     </button>
-                    <button class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="fullstack">
-                        Full-Stack
+                    <button class="filter-btn bg-gray-800 text-white px-6 py-3 rounded-full font-semibold" data-filter="unreal">
+                        Unreal Engine
                     </button>
                 </div>
             </div>
@@ -231,28 +231,28 @@
     <section class="py-20 bg-black">
         <div class="max-w-7xl mx-auto px-6">
             <div class="project-grid" id="projects-grid">
-                <!-- AI Smart Contract Builder -->
-                <div class="project-card scroll-reveal" data-category="blockchain ai" data-project="ai-contract-builder">
+                <!-- AI Game Level Architect -->
+                <div class="project-card scroll-reveal" data-category="unreal ai" data-project="ai-game-architect">
                     <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-700 relative overflow-hidden">
-                        <img src="./resources/project-blockchain.jpg" alt="AI Smart Contract Builder" class="w-full h-full object-cover">
+                        <img src="./resources/project-backend.jpg" alt="AI Game Level Architect" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <span class="text-white font-semibold text-lg">Blockchain + AI</span>
+                            <span class="text-white font-semibold text-lg">Unreal + AI</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">AI Smart Contract Builder</h3>
+                        <h3 class="text-xl font-bold mb-3">AI Game Level Architect</h3>
                         <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            AI-assisted platform for creating, testing, and deploying smart contracts with automated validation 
-                            and real-time error detection. Features intelligent code generation and optimization.
+                            AI-assisted platform for generating, testing, and optimizing game levels within Unreal Engine. 
+                            Features intelligent procedural generation and real-time performance validation.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Solidity</span>
-                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">TypeScript</span>
-                            <span class="tech-tag text-green-400 px-3 py-1 rounded-full text-xs">Kubernetes</span>
+                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">C++</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">Unreal Engine</span>
+                            <span class="tech-tag text-green-400 px-3 py-1 rounded-full text-xs">Python</span>
                             <span class="tech-tag text-amber-400 px-3 py-1 rounded-full text-xs">AI/ML</span>
                         </div>
                         <div class="flex gap-3">
-                            <button onclick="openProjectModal('ai-contract-builder')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                            <button onclick="openProjectModal('ai-game-architect')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
                                 View Details
                             </button>
                             <a href="#" class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-400 hover:text-white transition-colors">
@@ -262,25 +262,25 @@
                     </div>
                 </div>
 
-                <!-- SundialSonic Platform -->
-                <div class="project-card scroll-reveal" data-category="blockchain fullstack" data-project="sundial-sonic">
+                <!-- SundialSonic Game Backend -->
+                <div class="project-card scroll-reveal" data-category="backend unreal" data-project="sundial-sonic">
                     <div class="h-48 bg-gradient-to-br from-amber-600 to-orange-700 relative overflow-hidden">
-                        <img src="./resources/project-ai.jpg" alt="SundialSonic Platform" class="w-full h-full object-cover">
+                        <img src="./resources/project-ai.jpg" alt="SundialSonic Game Backend" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <span class="text-white font-semibold text-lg">Gaming + Blockchain</span>
+                            <span class="text-white font-semibold text-lg">Backend + Unreal</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">SundialSonic Platform</h3>
+                        <h3 class="text-xl font-bold mb-3">SundialSonic Game Backend</h3>
                         <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            Blockchain-driven spin game platform built on EVM with verifiable randomness for fair spins. 
-                            Features on-chain reward systems and cross-platform UI implementation.
+                            AWS-powered game backend for real-time multiplayer titles. Features scalable session management 
+                            using AWS GameLift and high-performance state synchronization.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag text-amber-400 px-3 py-1 rounded-full text-xs">EVM</span>
-                            <span class="tech-tag text-red-400 px-3 py-1 rounded-full text-xs">Next.js</span>
-                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Electron</span>
-                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">Ethers.js</span>
+                            <span class="tech-tag text-amber-400 px-3 py-1 rounded-full text-xs">AWS GameLift</span>
+                            <span class="tech-tag text-red-400 px-3 py-1 rounded-full text-xs">C++</span>
+                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Unreal Engine</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">WebSockets</span>
                         </div>
                         <div class="flex gap-3">
                             <button onclick="openProjectModal('sundial-sonic')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
@@ -293,25 +293,25 @@
                     </div>
                 </div>
 
-                <!-- Plampay System -->
-                <div class="project-card scroll-reveal" data-category="ai fullstack" data-project="plampay">
+                <!-- Game Identity & Anti-Cheat -->
+                <div class="project-card scroll-reveal" data-category="backend ai" data-project="plampay">
                     <div class="h-48 bg-gradient-to-br from-green-600 to-teal-700 relative overflow-hidden">
-                        <img src="./resources/project-fullstack.jpg" alt="Plampay System" class="w-full h-full object-cover">
+                        <img src="./resources/project-fullstack.jpg" alt="Game Identity & Anti-Cheat" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <span class="text-white font-semibold text-lg">Biometric + AI</span>
+                            <span class="text-white font-semibold text-lg">Security + AI</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">Plampay System</h3>
+                        <h3 class="text-xl font-bold mb-3">Game Identity & Anti-Cheat</h3>
                         <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            Palm-recognition-based payment verification system with AI-based palm recognition algorithms 
-                            and blockchain-backed security verification for secure identity-based transfers.
+                            AI-powered biometric identity verification and behavioral anti-cheat system for competitive gaming. 
+                            Uses ML models to detect anomalous player behavior in real-time.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="tech-tag text-green-400 px-3 py-1 rounded-full text-xs">AI/ML</span>
-                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">Biometrics</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">Security</span>
                             <span class="tech-tag text-orange-400 px-3 py-1 rounded-full text-xs">APIs</span>
-                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Security</span>
+                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Python</span>
                         </div>
                         <div class="flex gap-3">
                             <button onclick="openProjectModal('plampay')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
@@ -354,61 +354,61 @@
                     </div>
                 </div>
 
-                <!-- AI Agents for Sonic Builder -->
-                <div class="project-card scroll-reveal" data-category="ai blockchain" data-project="sonic-builder">
+                <!-- AI NPCs for Sonic Builder -->
+                <div class="project-card scroll-reveal" data-category="ai unreal" data-project="sonic-builder">
                     <div class="h-48 bg-gradient-to-br from-red-600 to-yellow-700 relative overflow-hidden">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <span class="text-white font-semibold text-lg">Multi-Agent AI</span>
+                            <span class="text-white font-semibold text-lg">AI + Unreal Engine</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">AI Agents for Sonic Builder</h3>
+                        <h3 class="text-xl font-bold mb-3">AI NPCs for Sonic Builder</h3>
                         <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            Multi-level AI system for gamified training and challenges with scalable AI agent framework 
-                            featuring unique personas, event systems, and tokenized in-game economy.
+                            Advanced AI agent system for Unreal Engine. Features multi-agent frameworks that 
+                            provide challenging opponents with unique behaviors and dynamic difficulty scaling.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag text-red-400 px-3 py-1 rounded-full text-xs">AI Framework</span>
-                            <span class="tech-tag text-yellow-400 px-3 py-1 rounded-full text-xs">Gaming</span>
-                            <span class="tech-tag text-blue-400 px-3 py-1 rounded-full text-xs">Blockchain</span>
-                            <span class="tech-tag text-green-400 px-3 py-1 rounded-full text-xs">Economy</span>
+                            <span class="tech-tag text-red-400 px-3 py-1 rounded-full text-xs">C++</span>
+                            <span class="tech-tag text-yellow-400 px-3 py-1 rounded-full text-xs">Unreal Engine</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">AI Agents</span>
+                            <span class="tech-tag text-green-400 px-3 py-1 rounded-full text-xs">Behavior Trees</span>
                         </div>
                         <div class="flex gap-3">
                             <button onclick="openProjectModal('sonic-builder')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
                                 View Details
                             </button>
                             <a href="#" class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-400 hover:text-white transition-colors">
-                                Learn More
+                                Case Study
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Multi-Chain DEX Aggregator -->
-                <div class="project-card scroll-reveal" data-category="blockchain fullstack" data-project="dex-aggregator">
+                <!-- Multiplayer Framework -->
+                <div class="project-card scroll-reveal" data-category="backend unreal" data-project="multiplayer-framework">
                     <div class="h-48 bg-gradient-to-br from-emerald-600 to-cyan-700 relative overflow-hidden">
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <span class="text-white font-semibold text-lg">DeFi + Cross-Chain</span>
+                            <span class="text-white font-semibold text-lg">Networking + UE</span>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">Multi-Chain DEX Aggregator</h3>
+                        <h3 class="text-xl font-bold mb-3">Multiplayer Framework</h3>
                         <p class="text-gray-400 mb-4 text-sm leading-relaxed">
-                            Advanced DEX aggregator supporting multiple blockchain networks with intelligent routing, 
-                            gas optimization, and real-time price discovery across decentralized exchanges.
+                            High-performance multiplayer framework for Unreal Engine. Optimizes network traffic, 
+                            handles lag compensation, and provides a robust foundation for competitive titles.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tech-tag text-emerald-400 px-3 py-1 rounded-full text-xs">DeFi</span>
-                            <span class="tech-tag text-cyan-400 px-3 py-1 rounded-full text-xs">Cross-Chain</span>
-                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">Web3</span>
-                            <span class="tech-tag text-orange-400 px-3 py-1 rounded-full text-xs">APIs</span>
+                            <span class="tech-tag text-emerald-400 px-3 py-1 rounded-full text-xs">C++</span>
+                            <span class="tech-tag text-cyan-400 px-3 py-1 rounded-full text-xs">Networking</span>
+                            <span class="tech-tag text-purple-400 px-3 py-1 rounded-full text-xs">Unreal Engine</span>
+                            <span class="tech-tag text-orange-400 px-3 py-1 rounded-full text-xs">Optimizations</span>
                         </div>
                         <div class="flex gap-3">
-                            <button onclick="openProjectModal('dex-aggregator')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                            <button onclick="openProjectModal('multiplayer-framework')" class="demo-btn text-white px-4 py-2 rounded-lg text-sm font-semibold">
                                 View Details
                             </button>
                             <a href="#" class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-400 hover:text-white transition-colors">
-                                Live App
+                                GitHub
                             </a>
                         </div>
                     </div>
@@ -471,7 +471,7 @@
                 </a> -->
             </div>
             <p class="text-gray-400 text-sm">
-                © 2024 Anuwat Chaiyakan. All rights reserved. | Crafted with passion for blockchain and AI innovation.
+                © 2024 Anuwat Chaiyakan. All rights reserved. | Crafted with passion for game backend and AI innovation.
             </p>
         </div>
     </footer>
@@ -479,101 +479,101 @@
     <script>
         // Project data for modals
         const projectData = {
-            'ai-contract-builder': {
-                title: 'AI Smart Contract Builder',
-                description: 'A revolutionary platform that combines artificial intelligence with blockchain development to automate smart contract creation, testing, and deployment.',
+            'ai-game-architect': {
+                title: 'AI Game Level Architect',
+                description: 'A revolutionary platform that combines artificial intelligence with Unreal Engine development to automate level creation, testing, and optimization.',
                 features: [
-                    'AI-powered Solidity code generation from natural language descriptions',
-                    'Automated security auditing and vulnerability detection',
-                    'Real-time testing environment with gas optimization suggestions',
-                    'Integration with major blockchain networks (Ethereum, BSC, Polygon)',
-                    'Smart contract deployment and management dashboard',
-                    'Oracle integration for external data feeds'
+                    'AI-powered procedural level generation from natural language descriptions',
+                    'Automated performance auditing and bottleneck detection',
+                    'Real-time testing environment with lighting and collision optimization suggestions',
+                    'Integration with Unreal Engine 5 and custom C++ plugins',
+                    'Level management and version control dashboard',
+                    'Cloud-based baking and rendering pipelines'
                 ],
-                technologies: ['Solidity', 'TypeScript', 'Node.js', 'React', 'Kubernetes', 'Docker', 'PostgreSQL', 'Redis'],
-                challenges: 'The main challenge was creating an AI system that could understand complex business logic and translate it into secure, optimized smart contract code while maintaining gas efficiency.',
-                solution: 'Implemented a multi-layered AI architecture with natural language processing, code generation templates, and automated testing pipelines to ensure security and efficiency.',
-                impact: 'Reduced smart contract development time by 70% and improved security through automated auditing, serving over 500 developers in the first 6 months.'
+                technologies: ['C++', 'Unreal Engine', 'Python', 'TensorFlow', 'Kubernetes', 'Docker', 'PostgreSQL', 'AWS'],
+                challenges: 'The main challenge was creating an AI system that could understand spatial layout and game flow to generate playable, aesthetically pleasing levels while maintaining high performance.',
+                solution: 'Implemented a multi-layered AI architecture with procedural generation algorithms, neural networks for aesthetic evaluation, and automated stress-testing pipelines.',
+                impact: 'Reduced level design iteration time by 60% and improved performance stability across diverse hardware, serving over 200 developers.'
             },
             'sundial-sonic': {
-                title: 'SundialSonic Platform',
-                description: 'A blockchain-driven gaming platform that leverages verifiable randomness and smart contracts to create fair, transparent gaming experiences.',
+                title: 'SundialSonic Game Backend',
+                description: 'A high-performance game backend powered by AWS, designed for real-time multiplayer experiences with scalable session management.',
                 features: [
-                    'Verifiable randomness using Chainlink VRF for fair gameplay',
-                    'On-chain reward system with automatic payout distribution',
-                    'Cross-platform compatibility (Web, Desktop, Mobile)',
-                    'Real-time game state synchronization',
-                    'Player wallet integration and asset management',
-                    'Comprehensive analytics and player statistics'
+                    'Scalable session hosting using AWS GameLift',
+                    'Real-time state synchronization with low-latency WebSockets',
+                    'Matchmaking system with skill-based player pairing',
+                    'Automated server scaling based on player demand',
+                    'Player profile and persistent data management',
+                    'Comprehensive telemetry and cheat detection analytics'
                 ],
-                technologies: ['Solidity', 'Next.js', 'Electron', 'Ethers.js', 'Web3.js', 'PostgreSQL', 'Redis', 'Docker'],
-                challenges: 'Ensuring true randomness in blockchain gaming while maintaining gas efficiency and creating an engaging cross-platform experience.',
-                solution: 'Integrated Chainlink VRF for verifiable randomness and developed an efficient state management system that minimizes on-chain interactions while preserving transparency.',
-                impact: 'Successfully launched with over 10,000 registered players and processed more than 50,000 gaming transactions with zero security incidents.'
+                technologies: ['C++', 'AWS GameLift', 'Node.js', 'Redis', 'PostgreSQL', 'Docker', 'Terraform', 'WebSockets'],
+                challenges: 'Ensuring low-latency synchronization and high availability during peak player counts while managing infrastructure costs.',
+                solution: 'Leveraged AWS GameLift for global server distribution and implemented an efficient binary protocol for state synchronization to minimize bandwidth.',
+                impact: 'Successfully supported over 50,000 concurrent players with sub-100ms latency globally and zero major downtime.'
             },
             'plampay': {
-                title: 'Plampay Biometric Payment System',
-                description: 'An innovative payment verification system that uses palm recognition technology combined with blockchain security for secure, contactless transactions.',
+                title: 'Game Identity & Anti-Cheat System',
+                description: 'An advanced security system that uses AI-powered behavioral analysis and biometric verification to ensure fair play and secure player identities.',
                 features: [
-                    'AI-powered palm recognition with 99.9% accuracy',
-                    'Blockchain-based identity verification and transaction logging',
-                    'Real-time biometric matching and fraud detection',
-                    'Multi-factor authentication with palm + device verification',
-                    'Merchant integration APIs and payment processing',
-                    'Compliant with PCI DSS and biometric security standards'
+                    'AI-powered behavioral anti-cheat with 98% detection rate',
+                    'Biometric identity verification for high-stakes tournaments',
+                    'Real-time anomaly detection in player input patterns',
+                    'Hardware-level device fingerprinting and spoofing protection',
+                    'Secure player data encryption and privacy-first storage',
+                    'API for seamless integration with Unreal Engine and Unity'
                 ],
-                technologies: ['Python', 'TensorFlow', 'Node.js', 'React', 'PostgreSQL', 'Blockchain', 'Biometric APIs', 'Encryption'],
-                challenges: 'Balancing biometric accuracy with processing speed while ensuring the highest levels of security and privacy protection.',
-                solution: 'Developed a hybrid AI model that combines multiple biometric indicators with blockchain verification, achieving both speed and security requirements.',
-                impact: 'Processed over $2M in transactions within the first year with zero false positives and maintained 99.9% uptime.'
+                technologies: ['Python', 'TensorFlow', 'C++', 'Node.js', 'PostgreSQL', 'AWS Lambda', 'Encryption', 'Security APIs'],
+                challenges: 'Differentiating between high-skill player movements and sophisticated cheat software without generating false positives.',
+                solution: 'Developed a deep learning model trained on millions of hours of gameplay data to identify subtle patterns indicative of non-human input.',
+                impact: 'Reduced cheating incidents by 85% in competitive environments and processed identity verification for over 100,000 players.'
             },
             'telegram-bot': {
-                title: 'Telegram Market Analyzer Bot',
-                description: 'An intelligent Telegram bot that uses natural language processing to analyze market trends and opportunities from various channels and groups.',
+                title: 'AI Game Community Manager',
+                description: 'An intelligent bot that leverages natural language processing to manage and engage gaming communities across multiple platforms.',
                 features: [
-                    'NLP-powered content analysis and sentiment tracking',
-                    'Automated opportunity detection and classification',
-                    'Configurable AI personalities for different analysis types',
-                    'Real-time market trend monitoring and alerts',
-                    'User analytics and personalized recommendations',
-                    'Integration with external market data APIs'
+                    'NLP-powered sentiment analysis and feedback classification',
+                    'Automated support ticket generation from community chat',
+                    'AI-driven FAQs and player troubleshooting assistance',
+                    'Real-time monitoring of community trends and sentiment spikes',
+                    'Personalized player engagement and event notifications',
+                    'Integration with Discord, Telegram, and Studio APIs'
                 ],
-                technologies: ['Python', 'Node.js', 'NLTK', 'TensorFlow', 'PostgreSQL', 'Redis', 'Telegram API', 'WebSocket'],
-                challenges: 'Processing large volumes of unstructured data in real-time while maintaining accuracy and avoiding false positives in opportunity detection.',
-                solution: 'Implemented a sophisticated NLP pipeline with multiple validation layers and machine learning models trained on domain-specific data.',
-                impact: 'Successfully identified over 1,000 legitimate opportunities with 85% accuracy, serving a community of 5,000+ active users.'
+                technologies: ['Python', 'NLTK', 'Transformers', 'Node.js', 'PostgreSQL', 'Redis', 'Discord/Telegram APIs', 'WebSockets'],
+                challenges: 'Handling the nuance and slang of gaming communities while providing accurate and helpful responses in real-time.',
+                solution: 'Implemented a transformer-based NLP model fine-tuned on gaming-specific datasets and community interactions.',
+                impact: 'Automated 70% of routine player inquiries and provided studio leads with actionable community sentiment reports within minutes.'
             },
             'sonic-builder': {
-                title: 'AI Agents for Sonic Builder',
-                description: 'A comprehensive multi-agent AI system designed for gamified training experiences with customizable difficulty levels and unique AI personalities.',
+                title: 'AI NPCs for Sonic Builder',
+                description: 'A sophisticated AI agent system for Unreal Engine that provides dynamic, challenging, and immersive NPC behaviors.',
                 features: [
-                    'Scalable AI agent framework with difficulty progression (Normal → Legendary)',
-                    'Unique AI personas with distinct behaviors and strategies',
-                    'Event-driven architecture for dynamic gameplay',
-                    'Tokenized in-game economy with blockchain integration',
-                    'Leaderboard system with reward distribution',
-                    'Real-time performance analytics and player tracking'
+                    'Advanced behavior trees with dynamic state transitions',
+                    'AI learning system that adapts to player strategies',
+                    'Multi-agent coordination for group combat and tactics',
+                    'Procedural dialogue system using LLMs for immersive interactions',
+                    'Performance-optimized AI logic running at 60fps',
+                    'Easy-to-use editor tools for designer customization'
                 ],
-                technologies: ['Python', 'Node.js', 'TensorFlow', 'Redis', 'PostgreSQL', 'Blockchain', 'WebSocket', 'Docker'],
-                challenges: 'Creating AI agents that provide meaningful challenge progression while maintaining engagement and preventing predictability.',
-                solution: 'Developed a sophisticated AI behavior tree system with machine learning adaptation that learns from player interactions and adjusts difficulty dynamically.',
-                impact: 'Increased player retention by 60% and engagement time by 40% compared to traditional static AI opponents.'
+                technologies: ['C++', 'Unreal Engine', 'Python', 'Behavior Trees', 'PostgreSQL', 'Redis', 'LLMs', 'Docker'],
+                challenges: 'Creating AI that feels "smart" and unpredictable without being unfairly difficult or performance-heavy.',
+                solution: 'Developed a custom AI framework that combines traditional behavior trees with lightweight machine learning modules for decision making.',
+                impact: 'Improved player engagement metrics by 50% and received high praise from playtesters for NPC "human-like" behavior.'
             },
-            'dex-aggregator': {
-                title: 'Multi-Chain DEX Aggregator',
-                description: 'An advanced decentralized exchange aggregator that optimizes trading routes across multiple blockchain networks for the best prices and lowest slippage.',
+            'multiplayer-framework': {
+                title: 'High-Performance Multiplayer Framework',
+                description: 'A robust networking foundation for Unreal Engine designed to simplify the development of competitive multiplayer games.',
                 features: [
-                    'Multi-chain support (Ethereum, BSC, Polygon, Arbitrum)',
-                    'Intelligent routing algorithm for optimal trade execution',
-                    'Real-time price comparison across multiple DEXs',
-                    'Gas fee optimization and transaction batching',
-                    'MEV protection and sandwich attack prevention',
-                    'Comprehensive analytics and trading history'
+                    'Advanced lag compensation and client-side prediction',
+                    'Delta compression for minimized network bandwidth',
+                    'Support for large-scale battles (up to 128 players)',
+                    'Modular networking components for easy integration',
+                    'Built-in support for dedicated servers and p2p',
+                    'Comprehensive network profiling and debugging tools'
                 ],
-                technologies: ['Solidity', 'TypeScript', 'Node.js', 'React', 'Web3.js', 'The Graph', 'Redis', 'Docker'],
-                challenges: 'Managing the complexity of multiple blockchain networks while ensuring optimal trade execution and minimizing gas costs.',
-                solution: 'Built a sophisticated routing engine that analyzes market conditions in real-time and uses advanced algorithms to find the most efficient trading paths.',
-                impact: 'Saved users an average of 15% on trading costs and processed over $10M in trading volume within the first 6 months.'
+                technologies: ['C++', 'Unreal Engine', 'Networking', 'UDP/TCP', 'AWS', 'Docker', 'Profiling Tools', 'Terraform'],
+                challenges: 'Managing consistent game state across hundreds of clients with varying network conditions and hardware capabilities.',
+                solution: 'Implemented a state-of-the-art networking architecture based on industry-leading multiplayer standards and custom optimizations for UE.',
+                impact: 'Used as the core framework for 3 upcoming titles, reducing networking development time by 40%.'
             }
         };
 

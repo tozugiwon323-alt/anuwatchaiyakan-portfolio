@@ -4,13 +4,13 @@
 
 ### Visual Language
 - **Modern Professional**: Clean, sophisticated aesthetic that conveys technical expertise
-- **Tech-Forward**: Cutting-edge design elements that reflect blockchain and AI specialization
+- **Tech-Forward**: Cutting-edge design elements that reflect game backend and AI specialization
 - **Minimalist Elegance**: Sophisticated restraint with purposeful animations and interactions
 - **Data-Driven Aesthetic**: Visual elements that reflect the analytical nature of software engineering
 
 ### Color Palette
 - **Primary**: Deep charcoal (#1a1a1a) and pure white (#ffffff) for maximum contrast
-- **Accent**: Electric blue (#00d4ff) for blockchain/tech elements
+- **Accent**: Electric blue (#00d4ff) for tech elements
 - **Secondary**: Warm amber (#ffb347) for AI/automation highlights
 - **Neutral**: Soft gray (#f8f9fa) for backgrounds and subtle elements
 - **Gradient Flow**: Subtle blue-to-amber gradients for dynamic backgrounds
@@ -24,7 +24,7 @@
 ## Visual Effects & Animation
 
 ### Background Effects
-- **Particle Network**: Animated nodes representing blockchain network connections
+- **Particle Network**: Animated nodes representing system network connections
 - **Data Flow**: Subtle animated lines suggesting data transmission and AI processing
 - **Geometric Patterns**: Clean, mathematical shapes that reinforce technical precision
 
@@ -37,7 +37,7 @@
 ### Interactive Elements
 - **3D Card Transforms**: Projects and skills cards with depth and perspective
 - **Hover Morphing**: Smooth shape and color transitions on interactive elements
-- **Glow Effects**: Subtle neon-style glows on blockchain-related content
+- **Glow Effects**: Subtle neon-style glows on tech-related content
 - **Ripple Animations**: Click feedback with expanding circles
 
 ### Scroll Animations

@@ -29,9 +29,9 @@ function initializeTitleTypewriter() {
     const titleTyped = new Typed('#typed-title', {
         strings: [
             'Software Engineer',
-            'Blockchain Developer',
-            'AI & Automation Specialist',
-            'Full-Stack Developer'
+            'Unreal Engine Developer',
+            'Game Backend & AI Specialist',
+            'AWS Cloud Architect'
         ],
         typeSpeed: 80,
         backSpeed: 50,
@@ -183,7 +183,7 @@ function initializeSkillsChart() {
                 data: [
                     { 
                         value: 35, 
-                        name: 'Blockchain Development',
+                        name: 'Unreal Engine & Game Dev',
                         itemStyle: { color: '#00d4ff' }
                     },
                     { 
@@ -193,12 +193,12 @@ function initializeSkillsChart() {
                     },
                     { 
                         value: 25, 
-                        name: 'Full-Stack Development',
+                        name: 'Cloud & Infrastructure',
                         itemStyle: { color: '#10b981' }
                     },
                     { 
                         value: 10, 
-                        name: 'DevOps & Infrastructure',
+                        name: 'System Architecture',
                         itemStyle: { color: '#8b5cf6' }
                     }
                 ]
@@ -251,24 +251,24 @@ function initializeSkillNodes() {
 // Show skill details modal
 function showSkillDetails(skillName) {
     const skillDetails = {
-        'Solidity': 'Expert in smart contract development with gas optimization and security auditing.',
-        'EVM': 'Deep understanding of Ethereum Virtual Machine internals and bytecode.',
-        'Hardhat': 'Advanced development environment setup with testing and deployment pipelines.',
-        'Ethers.js': 'Library integration for seamless blockchain interaction and wallet connectivity.',
-        'DeFi': 'Decentralized finance protocol development and yield farming mechanisms.',
-        'NFTs': 'Non-fungible token standards and marketplace implementation.',
+        'C++': 'Expert in high-performance game logic and systems development within Unreal Engine.',
+        'Blueprints': 'Advanced visual scripting for rapid prototyping and complex game mechanics.',
+        'AWS GameLift': 'Cloud-based dedicated server hosting and scaling for multiplayer games.',
+        'WebSockets': 'Real-time bidirectional communication for low-latency game state synchronization.',
+        'Redis': 'High-speed in-memory data storage for session management and real-time leaderboards.',
+        'Multiplayer': 'Architecture and implementation of robust networking for competitive gaming.',
+        'AWS': 'Comprehensive cloud infrastructure design using EC2, Lambda, S3, and more.',
+        'Terraform': 'Infrastructure as Code for automated and reproducible cloud environments.',
+        'System Arch': 'Design of scalable and resilient backend systems for high-traffic applications.',
         'TypeScript': 'Strong typing for large-scale applications and API development.',
-        'Node.js': 'Backend development with Express.js and NestJS frameworks.',
-        'Python': 'AI/ML model orchestration and data processing pipelines.',
-        'NLP': 'Natural language processing for intelligent automation systems.',
-        'Agents': 'Multi-agent AI systems with unique personalities and capabilities.',
-        'Automation': 'CI/CD pipelines and intelligent workflow automation.',
-        'React': 'Modern frontend development with component-based architecture.',
-        'Next.js': 'Server-side rendering and full-stack React applications.',
-        'PostgreSQL': 'Relational database design and optimization.',
-        'Docker': 'Containerization and microservices architecture.',
-        'Kubernetes': 'Orchestration and scaling of containerized applications.',
-        'CI/CD': 'Continuous integration and deployment automation.'
+        'Node.js': 'Backend development for game services and API orchestration.',
+        'Python': 'AI/ML model training and game data processing pipelines.',
+        'NLP': 'Natural language processing for intelligent NPC dialogue and community management.',
+        'Agents': 'Multi-agent AI systems with unique behaviors and tactical coordination.',
+        'Automation': 'CI/CD pipelines and automated testing for game server deployments.',
+        'PostgreSQL': 'Relational database design for persistent player data and analytics.',
+        'Docker': 'Containerization for consistent deployment across various environments.',
+        'Kubernetes': 'Orchestration and scaling of microservices for game backend infrastructure.'
     };
     
     const detail = skillDetails[skillName] || 'Advanced expertise in this technology.';

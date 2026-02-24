@@ -10,7 +10,7 @@
 ### 2. Project Showcase Gallery
 - **Dynamic Project Cards**: Grid layout with hover effects revealing tech stack and project details
 - **Live Project Previews**: Embedded demo videos or interactive screenshots
-- **Filter System**: Animated filter buttons to sort projects by technology (Blockchain, AI, Full-Stack)
+- **Filter System**: Animated filter buttons to sort projects by technology (Game Backend, AI, Unreal Engine)
 - **Project Detail Modal**: Full-screen overlay with detailed descriptions, tech stack, and links
 
 ### 3. Interactive Contact System
@@ -19,10 +19,10 @@
 - **Availability Status**: Live status indicator showing current availability
 - **Multiple Contact Methods**: LinkedIn, GitHub, email with animated icons
 
-### 4. Blockchain Achievement Tracker
-- **Decentralized Portfolio Section**: Showcase of blockchain projects with interactive elements
-- **Smart Contract Simulator**: Interactive demo showing contract deployment process
-- **Crypto Wallet Integration Display**: Visual representation of blockchain integrations
+### 4. Game System Architecture Tracker
+- **Game Architecture Section**: Showcase of Unreal Engine projects with interactive elements
+- **Game Server Simulator**: Interactive demo showing server deployment process
+- **AWS System Structure Display**: Visual representation of game backend integrations
 
 ## User Experience Flow
 
@@ -34,7 +34,7 @@
 ## Animation & Effects
 
 - **Scroll-triggered animations** for all content sections
-- **Particle system background** representing data flow and blockchain networks
+- **Particle system background** representing data flow and system networks
 - **Typewriter effects** for key headings and descriptions
 - **3D hover transforms** on interactive elements
 - **Smooth page transitions** with loading animations
